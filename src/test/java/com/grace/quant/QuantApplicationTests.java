@@ -2,6 +2,7 @@ package com.grace.quant;
 
 import com.grace.quant.entity.Account;
 import com.grace.quant.repository.AccountRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Random;
 
 
 @SpringBootTest
@@ -20,12 +23,40 @@ class QuantApplicationTests {
 	@Test
 	void save_account() {
 		Account account = new Account();
-		account.setUsername("Peter Li");
-		account.setPassword("password123");
-		account.setAge(40);
+		String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		String name = "Peter Li";
+		Random random = new Random();
+		StringBuffer sb=new StringBuffer();
+		sb.append(name);
 
-		//call mybatis to create an account in DB
+		int number = random.nextInt(62);
+		sb.append(str.charAt(number));
+
+		account.setUsername(sb.toString());
+		account.setPassword("password123");
+
+		int age = random.nextInt(100);
+		account.setAge(age);
+
+		// create an account in DB
 		repository.save(account);
+
+	}
+
+	@Test
+	void query_account(){
+
+		// query all
+		List<Account> accountList = repository.findAll();
+		Assertions.assertEquals(accountList.get(0).getUsername(), "Peter Li");
+//		accountList.forEach( user -> {
+//			Assertions.assertEquals(user.getUsername(), "Peter Li");
+//		});
+
+		// query single account
+		Account user = repository.findById(1);
+		Assertions.assertEquals(user.getUsername(), "Peter Li");
+
 	}
 
 //	@Autowired
