@@ -58,7 +58,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>6.1.2</version>
-			<scope>test</scope>
 		</dependency>
 <!--		<dependency>-->
 <!--			<groupId>org.mybatis</groupId>-->
@@ -70,6 +69,11 @@
 			<groupId>org.mybatis.generator</groupId>
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>1.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>6.1.2</version>
 		</dependency>
 
 	</dependencies>

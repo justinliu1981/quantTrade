@@ -1,6 +1,5 @@
 package com.grace.quant.entity;
 
-import jdk.jfr.DataAmount;
 import lombok.Data;
 
 @Data
