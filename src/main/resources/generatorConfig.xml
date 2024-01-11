@@ -14,7 +14,7 @@
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.grace.quant.repository" targetProject="src/main/java"/>
 
-        <table tableName="cash" domainObjectName="Cash"
+        <table tableName="position" domainObjectName="Position"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

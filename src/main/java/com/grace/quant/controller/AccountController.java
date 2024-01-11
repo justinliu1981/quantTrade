@@ -6,17 +6,19 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
+@RequestMapping("/api/account")
 public class AccountController {
 
     @Autowired
     private AccountRepository repository;
 
-    @PostMapping("/account")
+    @PostMapping("/create")
     public int createAccount(@RequestBody Account user) {
         return repository.save(user);
     }
 
-    @GetMapping("/account/{id}")
+
+    @GetMapping("/get/{id}")
     public Account getAccount(@PathVariable long id) {
         return repository.findById(id);
     }

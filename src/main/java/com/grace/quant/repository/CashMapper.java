@@ -1,6 +1,9 @@
 package com.grace.quant.repository;
 
+import com.grace.quant.entity.Account;
 import com.grace.quant.entity.Cash;
+
+import java.util.List;
 
 public interface CashMapper {
     /**
@@ -50,4 +53,6 @@ public interface CashMapper {
      * @mbg.generated Wed Jan 10 11:54:27 CST 2024
      */
     int updateByPrimaryKey(Cash row);
+
+    List<Cash> findAll();
 }

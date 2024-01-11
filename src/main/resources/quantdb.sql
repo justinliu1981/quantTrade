@@ -1,8 +1,9 @@
-use database quantdb;
+CREATE DATABASE IF NOT EXISTS quantdb;
+USE quantdb;
 
 DROP TABLE IF EXISTS `cash`;
 CREATE TABLE `cash` (
-  `id` integer PRIMARY KEY,
+  `id` integer PRIMARY KEY auto_increment,
   `account_id` varchar(255),
   `market_value` float,
   `nav` float,
@@ -19,7 +20,7 @@ CREATE TABLE `cash` (
 
 DROP TABLE IF EXISTS `position`;
 CREATE TABLE `position` (
-  `id` integer PRIMARY KEY,
+  `id` integer PRIMARY KEY auto_increment,
   `account_id` varchar(255),
   `symbol` varchar(255),
   `side` integer,
@@ -39,7 +40,7 @@ CREATE TABLE `position` (
 
 DROP TABLE IF EXISTS `execution_report`;
 CREATE TABLE `execution_report` (
-  `id` integer PRIMARY KEY,
+  `id` integer PRIMARY KEY auto_increment,
   `account_id` varchar(255),
   `sid` varchar(255),
   `scan_name` varchar(255),
@@ -62,7 +63,7 @@ CREATE TABLE `execution_report` (
 
 DROP TABLE IF EXISTS `order_status`;
 CREATE TABLE `order_status` (
-  `id` integer PRIMARY KEY,
+  `id` integer PRIMARY KEY auto_increment,
   `account_id` varchar(255),
   `sid` varchar(255),
   `scan_name` varchar(255),
@@ -92,7 +93,7 @@ CREATE TABLE `order_status` (
 
 DROP TABLE IF EXISTS `order_status_change`;
 CREATE TABLE `order_status_change` (
-  `id` integer PRIMARY KEY,
+  `id` integer PRIMARY KEY auto_increment,
   `account_id` varchar(255),
   `sid` varchar(255),
   `scan_name` varchar(255),

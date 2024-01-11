@@ -24,7 +24,7 @@ public class QuantControllerTests {
     @Test
     public void test_accountController() throws Exception {
 
-        this.mockMvc.perform(get("/account/{id}",1)).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/api/account/get/{id}",1)).andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("Peter Li"));
 
     }
