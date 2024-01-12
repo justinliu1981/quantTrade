@@ -41,7 +41,7 @@ public class PositionController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteCash(@PathVariable("id") Integer id) {
+    public ResponseEntity deletePosition(@PathVariable("id") Integer id) {
         try {
             positionMapper.deleteByPrimaryKey(id);
             return new ResponseEntity(HttpStatus.OK);

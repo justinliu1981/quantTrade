@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grace.quant.repository.ExecutionMapper">
+  <resultMap id="BaseResultMap" type="com.grace.quant.entity.Execution">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="scan_name" jdbcType="VARCHAR" property="scanName" />
+    <result column="cl_ord_id" jdbcType="VARCHAR" property="clOrdId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="exec_id" jdbcType="VARCHAR" property="execId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="order_business" jdbcType="INTEGER" property="orderBusiness" />
+    <result column="ord_rej_reason" jdbcType="INTEGER" property="ordRejReason" />
+    <result column="ord_rej_reason_detail" jdbcType="VARCHAR" property="ordRejReasonDetail" />
+    <result column="exec_type" jdbcType="INTEGER" property="execType" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="volume" jdbcType="INTEGER" property="volume" />
+    <result column="side" jdbcType="INTEGER" property="side" />
+    <result column="position_effect" jdbcType="INTEGER" property="positionEffect" />
+    <result column="amount" jdbcType="REAL" property="amount" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="recv_at" jdbcType="TIMESTAMP" property="recvAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, account_id, sid, scan_name, cl_ord_id, order_id, exec_id, symbol, order_business, 
+    ord_rej_reason, ord_rej_reason_detail, exec_type, price, volume, side, position_effect, 
+    amount, created_at, recv_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from execution_report
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from execution_report
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.grace.quant.entity.Execution">
+    insert into execution_report (account_id, sid,
+      scan_name, cl_ord_id, order_id, 
+      exec_id, symbol, order_business, 
+      ord_rej_reason, ord_rej_reason_detail, exec_type, 
+      price, volume, side, position_effect, 
+      amount, created_at, recv_at
+      )
+    values (#{accountId,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR},
+      #{scanName,jdbcType=VARCHAR}, #{clOrdId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{execId,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR}, #{orderBusiness,jdbcType=INTEGER}, 
+      #{ordRejReason,jdbcType=INTEGER}, #{ordRejReasonDetail,jdbcType=VARCHAR}, #{execType,jdbcType=INTEGER}, 
+      #{price,jdbcType=REAL}, #{volume,jdbcType=INTEGER}, #{side,jdbcType=INTEGER}, #{positionEffect,jdbcType=INTEGER}, 
+      #{amount,jdbcType=REAL}, #{createdAt,jdbcType=TIMESTAMP}, #{recvAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.grace.quant.entity.Execution">
+    insert into execution_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="scanName != null">
+        scan_name,
+      </if>
+      <if test="clOrdId != null">
+        cl_ord_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="execId != null">
+        exec_id,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="orderBusiness != null">
+        order_business,
+      </if>
+      <if test="ordRejReason != null">
+        ord_rej_reason,
+      </if>
+      <if test="ordRejReasonDetail != null">
+        ord_rej_reason_detail,
+      </if>
+      <if test="execType != null">
+        exec_type,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="side != null">
+        side,
+      </if>
+      <if test="positionEffect != null">
+        position_effect,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="recvAt != null">
+        recv_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="scanName != null">
+        #{scanName,jdbcType=VARCHAR},
+      </if>
+      <if test="clOrdId != null">
+        #{clOrdId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="execId != null">
+        #{execId,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBusiness != null">
+        #{orderBusiness,jdbcType=INTEGER},
+      </if>
+      <if test="ordRejReason != null">
+        #{ordRejReason,jdbcType=INTEGER},
+      </if>
+      <if test="ordRejReasonDetail != null">
+        #{ordRejReasonDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="execType != null">
+        #{execType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="side != null">
+        #{side,jdbcType=INTEGER},
+      </if>
+      <if test="positionEffect != null">
+        #{positionEffect,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=REAL},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvAt != null">
+        #{recvAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.grace.quant.entity.Execution">
+    update execution_report
+    <set>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="scanName != null">
+        scan_name = #{scanName,jdbcType=VARCHAR},
+      </if>
+      <if test="clOrdId != null">
+        cl_ord_id = #{clOrdId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="execId != null">
+        exec_id = #{execId,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBusiness != null">
+        order_business = #{orderBusiness,jdbcType=INTEGER},
+      </if>
+      <if test="ordRejReason != null">
+        ord_rej_reason = #{ordRejReason,jdbcType=INTEGER},
+      </if>
+      <if test="ordRejReasonDetail != null">
+        ord_rej_reason_detail = #{ordRejReasonDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="execType != null">
+        exec_type = #{execType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="side != null">
+        side = #{side,jdbcType=INTEGER},
+      </if>
+      <if test="positionEffect != null">
+        position_effect = #{positionEffect,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=REAL},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvAt != null">
+        recv_at = #{recvAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.grace.quant.entity.Execution">
+    update execution_report
+    set account_id = #{accountId,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      scan_name = #{scanName,jdbcType=VARCHAR},
+      cl_ord_id = #{clOrdId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      exec_id = #{execId,jdbcType=VARCHAR},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      order_business = #{orderBusiness,jdbcType=INTEGER},
+      ord_rej_reason = #{ordRejReason,jdbcType=INTEGER},
+      ord_rej_reason_detail = #{ordRejReasonDetail,jdbcType=VARCHAR},
+      exec_type = #{execType,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      volume = #{volume,jdbcType=INTEGER},
+      side = #{side,jdbcType=INTEGER},
+      position_effect = #{positionEffect,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=REAL},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      recv_at = #{recvAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from execution_report
+  </select>
+</mapper>
