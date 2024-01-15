@@ -1,6 +1,7 @@
 package com.grace.quant.controller;
 
 import com.grace.quant.entity.Execution;
+import com.grace.quant.entity.Position;
 import com.grace.quant.repository.ExecutionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,14 @@ public class ExecutionController {
 
         return executionMapper.insert(execution);
     }
+
+    @PostMapping("/create/list")
+    public void createExecutions(@RequestBody Execution[] executions) {
+        for (Execution execution : executions) {
+            executionMapper.insert(execution);
+        }
+    }
+
 
 
     @GetMapping("/get/{id}")

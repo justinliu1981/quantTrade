@@ -1,5 +1,6 @@
 package com.grace.quant.controller;
 
+import com.grace.quant.entity.Cash;
 import com.grace.quant.entity.Position;
 import com.grace.quant.repository.PositionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,13 @@ public class PositionController {
     public int createPosition(@RequestBody Position position) {
 
         return positionMapper.insert(position);
+    }
+
+    @PostMapping("/create/list")
+    public void createPositions(@RequestBody Position[] positions) {
+        for (Position position : positions) {
+            positionMapper.insert(position);
+        }
     }
 
 

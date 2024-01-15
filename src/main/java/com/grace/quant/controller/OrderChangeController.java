@@ -14,37 +14,43 @@ import java.util.List;
 public class OrderChangeController {
 
     @Autowired
-    private OrderChangeMapper orderChangeMapperMapper;
+    private OrderChangeMapper orderChangeMapper;
 
     @PostMapping("/create")
     public int createOrderChange(@RequestBody OrderChange orderChange) {
 
-        return orderChangeMapperMapper.insert(orderChange);
+        return orderChangeMapper.insert(orderChange);
     }
 
+    @PostMapping("/create/list")
+    public void createOrders(@RequestBody OrderChange[] orderChanges) {
+        for (OrderChange orderChange : orderChanges) {
+            orderChangeMapper.insert(orderChange);
+        }
+    }
 
     @GetMapping("/get/{id}")
     public OrderChange getOrderChange(@PathVariable Integer id) {
 
-        return orderChangeMapperMapper.selectByPrimaryKey(id);
+        return orderChangeMapper.selectByPrimaryKey(id);
     }
 
     @GetMapping("/get")
     public List<OrderChange> getOrderChangeAll() {
 
-        return orderChangeMapperMapper.findAll();
+        return orderChangeMapper.findAll();
     }
 
     @PutMapping("/update")
     public int updateOrderChange(@RequestBody OrderChange orderChange) {
 
-        return orderChangeMapperMapper.updateByPrimaryKey(orderChange);
+        return orderChangeMapper.updateByPrimaryKey(orderChange);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteOrder(@PathVariable("id") Integer id) {
         try {
-            orderChangeMapperMapper.deleteByPrimaryKey(id);
+            orderChangeMapper.deleteByPrimaryKey(id);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

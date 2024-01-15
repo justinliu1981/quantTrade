@@ -1,5 +1,6 @@
 package com.grace.quant.controller;
 
+import com.grace.quant.entity.Execution;
 import com.grace.quant.entity.Order;
 import com.grace.quant.repository.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class OrderController {
         return orderMapper.insert(order);
     }
 
+    @PostMapping("/create/list")
+    public void createOrders(@RequestBody Order[] orders) {
+        for (Order order : orders) {
+            orderMapper.insert(order);
+        }
+    }
 
     @GetMapping("/get/{id}")
     public Order getOrder(@PathVariable Integer id) {
