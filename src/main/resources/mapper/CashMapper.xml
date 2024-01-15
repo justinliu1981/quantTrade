@@ -67,6 +67,11 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{recvAt,jdbcType=TIMESTAMP}
       )
   </insert>
+  <insert id="insertCashes" parameterType="com.grace.quant.entity.Cash">
+    <foreach collection="array" item="item" index="index">
+      insert into cash (account_id, market_value, nav, pnl, fpnl, frozen, available, balance, order_frozen, created_at, updated_at, recv_at ) values (#{item.accountId,jdbcType=VARCHAR}, #{item.marketValue,jdbcType=REAL}, #{item.nav,jdbcType=REAL}, #{item.pnl,jdbcType=REAL}, #{item.fpnl,jdbcType=REAL}, #{item.frozen,jdbcType=REAL}, #{item.available,jdbcType=REAL}, #{item.balance,jdbcType=REAL}, #{item.orderFrozen,jdbcType=REAL}, #{item.createdAt,jdbcType=TIMESTAMP}, #{item.updatedAt,jdbcType=TIMESTAMP}, #{item.recvAt,jdbcType=TIMESTAMP} )
+    </foreach>
+  </insert>
   <insert id="insertSelective" parameterType="com.grace.quant.entity.Cash">
     <!--
       WARNING - @mbg.generated

@@ -16,6 +16,13 @@ public class CashController {
     @Autowired
     private CashMapper cashMapper;
 
+    @PostMapping("/create/list")
+    public void createCashes(@RequestBody Cash[] cashes) {
+        for (Cash cash : cashes) {
+            cashMapper.insert(cash);
+        }
+    }
+
     @PostMapping("/create")
     public int createCash(@RequestBody Cash cash) {
 
